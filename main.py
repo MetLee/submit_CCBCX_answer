@@ -31,7 +31,7 @@ def fetch_post_with_sign(url, data):
         'User-Token': token,
         'X-Auth-Token': 'Ccxc-Auth {ts} {sign}'.format(ts=ts, sign=sign)
     }
-    return r.post(url, data_body, headers=headers)
+    return r.post(url, data_body, headers=headers).text
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
         data = {'pid': pid, 'answer': answer}
         rst = fetch_post_with_sign(
             'https://api.ccxc.online/api/v1/check-answer', data)
-        print(answer, rst.text)
+        print(answer, rst)
         time.sleep(5 * 60 + 5)
     input()
 
